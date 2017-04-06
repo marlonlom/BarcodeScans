@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">BarcodeScans</string>
-    <string name="text_error_nooperational">Could not set up the detector!</string>
-    <string name="textview_content">Click (process) button to scan</string>
-    <string name="text_loading">Initializing program…</string>
+    <string name="text_error_no_operational">Could not set up the detector!</string>
+    <string name="textView_waiting">Click (process) button to scan</string>
+    <string name="text_initializing">Initializing program…</string>
+    <string name="text_camera_taking">Taking picture…</string>
+    <string name="text_camera_scanning">Taking picture…</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="button_dummy_scan">Detect barcode</string>
+    <string name="button_camera_scan">Use the camera</string>
+    <string name="text_error_scanning">No value returned from scanning</string>
 </resources>
