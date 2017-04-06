@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
@@ -28,7 +27,6 @@ class CameraBarcodeScannerFragment : BarcodeDetectorFragment() {
     private var mScanButton: Button? = null
     private var mBarcodeImage: ImageView? = null
     private var mResultsText: TextView? = null
-    private val mImageUri: Uri? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -47,15 +45,7 @@ class CameraBarcodeScannerFragment : BarcodeDetectorFragment() {
 
     override fun setupView() {
         mScanButton!!.setOnClickListener { checkCameraPermission() }
-
-        val handler = Handler()
-        handler.postDelayed({
-            val testResourceId = if (!isDetectorOperational)
-                R.string.text_error_no_operational
-            else
-                R.string.textView_waiting
-            mResultsText!!.setText(testResourceId)
-        }, 2000)
+        prepareNormalText()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
@@ -87,20 +77,36 @@ class CameraBarcodeScannerFragment : BarcodeDetectorFragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             RESULT_INTENT_PHOTO_CAPTURE -> if (resultCode == Activity.RESULT_OK) {
-                processTakenPicture(data)
+                processTakenPicture(data!!)
+            } else {
+                mResultsText!!.setText(R.string.text_error_no_image)
+                prepareNormalText()
             }
         }
     }
 
-    private fun processTakenPicture(data: Intent) {
-        val photoBitmap = data.extras.get("data") as Bitmap
-        mResultsText!!.setText(R.string.text_camera_scanning)
-        mBarcodeImage!!.setImageBitmap(photoBitmap)
-        Handler().postDelayed({ performBarcodeScanning(photoBitmap) }, 2000)
+    private fun prepareNormalText() {
+        val handler = Handler()
+        handler.postDelayed({
+            val testResourceId = if (!isDetectorOperational)
+                R.string.text_error_no_operational
+            else
+                R.string.textView_waiting
+            mResultsText!!.setText(testResourceId)
+        }, 2000)
+    }
+
+    private fun processTakenPicture(data: Intent?) {
+        if (data != null && data.extras != null && data.extras!!.get("data") != null) {
+            val photoBitmap = data.extras!!.get("data") as Bitmap
+            mResultsText!!.setText(R.string.text_camera_scanning)
+            mBarcodeImage!!.setImageBitmap(photoBitmap)
+            Handler().postDelayed({ performBarcodeScanning(photoBitmap) }, 2000)
+        }
     }
 
     private fun performBarcodeScanning(bitmap: Bitmap) {

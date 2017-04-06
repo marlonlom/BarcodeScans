@@ -11,4 +11,5 @@
     <string name="button_dummy_scan">Detect barcode</string>
     <string name="button_camera_scan">Use the camera</string>
     <string name="text_error_scanning">No value returned from scanning</string>
+    <string name="text_error_no_image">No image was used for scan</string>
 </resources>
