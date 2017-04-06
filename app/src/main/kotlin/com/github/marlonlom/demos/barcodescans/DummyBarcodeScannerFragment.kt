@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.github.marlonlom.demos.barcodescans.R
 
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode

@@ -62,7 +62,7 @@ class CameraBarcodeScannerFragment : BarcodeDetectorFragment() {
                                             grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            PERMISSION_REQUEST_PHOTO_CAPTURE -> if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            PERMISSION_REQUEST_PHOTO_CAPTURE -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 takePicture()
             } else {
                 mScanButton!!.isEnabled = false
@@ -71,7 +71,7 @@ class CameraBarcodeScannerFragment : BarcodeDetectorFragment() {
     }
 
     private fun takePicture() {
-        mResultsText!!.setText(R.string.text_initializing)
+        mResultsText!!.setText(R.string.text_camera_scanning)
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(activity.packageManager) != null) {
             startActivityForResult(takePictureIntent, RESULT_INTENT_PHOTO_CAPTURE)

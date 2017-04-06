@@ -22,6 +22,6 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
 
-        assertEquals("com.github.marlonlom.demos.barcodescans", appContext.packageName)
+        assertEquals("barcodescans", appContext.packageName)
     }
 }

@@ -2,15 +2,6 @@
 # Created by https://www.gitignore.io/api/android,androidstudio
 
 ### Android ###
-# Built application files
-*.apk
-*.ap_
-
-# Files for the ART/Dalvik VM
-*.dex
-
-# Java class files
-*.class
 
 # Generated files
 bin/
@@ -72,9 +63,6 @@ gen-external-apklibs
 
 # Generated files
 
-# Gradle files
-.gradle
-
 # Signing files
 .signing/
 
@@ -85,7 +73,6 @@ gen-external-apklibs
 # Log Files
 
 # Android Studio
-/*/build/
 /*/local.properties
 /*/out
 /*/*/build
@@ -99,14 +86,12 @@ gen-external-apklibs
 # External native build folder generated in Android Studio 2.2 and later
 
 # NDK
-obj/
 
 # IntelliJ IDEA
 *.iws
 /out/
 
 # User-specific configurations
-.idea/libraries/
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
@@ -171,7 +156,6 @@ fabric.properties
 # Created by https://www.gitignore.io/api/gradle
 
 ### Gradle ###
-/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -187,3 +171,26 @@ gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/gradle
 
+# Created by https://www.gitignore.io/api/kotlin
+
+### Kotlin ###
+.idea/shelf
+/android.tests.dependencies
+/confluence/target
+/dependencies
+/dist
+/gh-pages
+/ideaSDK
+/android-studio/sdk
+/out
+/tmp
+*.versionsBackup
+/idea/testData/debugger/tinyApp/classes*
+/jps-plugin/testData/kannotator
+/ultimate/dependencies
+/ultimate/ideaSDK
+/ultimate/out
+/ultimate/tmp
+!**/src/**/build
+
+# End of https://www.gitignore.io/api/gradle
